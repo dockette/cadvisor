@@ -79,3 +79,20 @@ jobs:
             CADVISOR_VERSION=${{ env.CADVISOR_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  docs:
+    name: "Docs"
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Update DockerHub description
+        uses: peter-evans/dockerhub-description@v5
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: dockette/cadvisor
+          readme-filepath: ./README.md

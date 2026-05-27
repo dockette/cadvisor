@@ -9,6 +9,17 @@ build:
 		-t ${DOCKER_IMAGE}:${DOCKER_TAG} \
 		.
 
+.PHONY: run
+run:
+	docker run --rm --name cadvisor-dockette-run --privileged --device=/dev/kmsg \
+		--volume=/:/rootfs:ro \
+		--volume=/var/run:/var/run:ro \
+		--volume=/sys:/sys:ro \
+		--volume=/var/lib/docker/:/var/lib/docker:ro \
+		--volume=/dev/disk/:/dev/disk:ro \
+		--publish=8080:8080 \
+		${DOCKER_IMAGE}:${DOCKER_TAG}
+
 .PHONY: test
 test:
 	docker rm -f cadvisor-dockette-test >/dev/null 2>&1 || true

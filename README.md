@@ -9,9 +9,10 @@
 </p>
 
 <p align=center>
-  <a href="https://hub.docker.com/r/dockette/cadvisor/"><img src="https://badgen.net/docker/pulls/dockette/cadvisor"></a>
-  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
-  <a href="https://github.com/sponsors/f3l1x"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+   <a href="https://github.com/dockette/cadvisor/actions"><img src="https://github.com/dockette/cadvisor/actions/workflows/docker.yml/badge.svg" alt="GitHub Actions"></a>
+   <a href="https://hub.docker.com/r/dockette/cadvisor"><img src="https://img.shields.io/docker/pulls/dockette/cadvisor.svg" alt="Docker Hub pulls"></a>
+   <a href="https://github.com/sponsors/f3l1x"><img src="https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ea4aaa" alt="GitHub Sponsors"></a>
+   <a href="https://github.com/orgs/dockette/discussions"><img src="https://img.shields.io/badge/support-discussions-6f42c1" alt="Support/Discussions"></a>
 </p>
 
 -----
@@ -39,6 +40,8 @@ Then open `http://localhost:8080`. On rootless Docker, Podman, or non-default gr
 
 `--privileged` and `--device=/dev/kmsg` match the common upstream example for broad compatibility; you may be able to reduce privileges for your environment—see upstream [runtime options](https://github.com/google/cadvisor/blob/master/docs/runtime_options.md).
 
+Use `make run` to start the same local cAdvisor container with the documented host mounts, `--privileged`, and `/dev/kmsg` device access.
+
 ## Versions
 
 Docker image tags use the **numeric** form (e.g. `0.56.2`), matching `ghcr.io/google/cadvisor`. GitHub [releases](https://github.com/google/cadvisor/releases) use a `v` prefix (e.g. v0.56.2) for the same version.
@@ -54,4 +57,6 @@ For **cAdvisor versions before v0.53.0**, the historical registry was `gcr.io/ca
 
 -----
 
-Consider supporting [f3l1x on GitHub Sponsors](https://github.com/sponsors/f3l1x) if you rely on this. Thanks for using it.
+## Maintenance
+
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
