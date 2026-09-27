@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  CADVISOR_VERSION: "0.56.2"
+  CADVISOR_VERSION: "0.60.6"
 
 jobs:
   test:
