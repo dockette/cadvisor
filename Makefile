@@ -1,5 +1,5 @@
 DOCKER_IMAGE=dockette/cadvisor
-DOCKER_TAG?=0.56.2
+DOCKER_TAG?=0.60.6
 DOCKER_PLATFORMS?=linux/amd64
 
 .PHONY: build

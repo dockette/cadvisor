@@ -33,7 +33,7 @@ docker run -d --name cadvisor --privileged --device=/dev/kmsg \
   --volume=/var/lib/docker/:/var/lib/docker:ro \
   --volume=/dev/disk/:/dev/disk:ro \
   --publish=8080:8080 \
-  dockette/cadvisor:0.56.2
+  dockette/cadvisor:0.60.6
 ```
 
 Then open `http://localhost:8080`. On rootless Docker, Podman, or non-default graph roots, the path to the container runtime state may differ from `/var/lib/docker`; adjust the bind mount to match your setup.
@@ -44,12 +44,12 @@ Use `make run` to start the same local cAdvisor container with the documented ho
 
 ## Versions
 
-Docker image tags use the **numeric** form (e.g. `0.56.2`), matching `ghcr.io/google/cadvisor`. GitHub [releases](https://github.com/google/cadvisor/releases) use a `v` prefix (e.g. v0.56.2) for the same version.
+Docker image tags use the **numeric** form (e.g. `0.60.6`), matching `ghcr.io/google/cadvisor`. GitHub [releases](https://github.com/google/cadvisor/releases) use a `v` prefix (e.g. v0.60.6) for the same version.
 
 | Image tag | Equivalent upstream | Docker Hub |
 |-----------|---------------------|------------|
-| `dockette/cadvisor:0.56.2` | `ghcr.io/google/cadvisor:0.56.2` | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
-| `dockette/cadvisor:latest` | same as `0.56.2` (rolling) | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
+| `dockette/cadvisor:0.60.6` | `ghcr.io/google/cadvisor:0.60.6` | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
+| `dockette/cadvisor:latest` | same as `0.60.6` (rolling) | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
 
 This image is a **thin republish**: the Dockerfile uses `FROM ghcr.io/google/cadvisor:${CADVISOR_VERSION}` so runtime behavior matches that upstream tag.
 
