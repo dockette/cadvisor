@@ -55,6 +55,11 @@ This image is a **thin republish**: the Dockerfile uses `FROM ghcr.io/google/cad
 
 For **cAdvisor versions before v0.53.0**, the historical registry was `gcr.io/cadvisor/cadvisor` instead of GHCR; this repo only republishes the modern GHCR tags.
 
+## Release version
+
+The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/cadvisor:<VERSION>`.
+To release, run `make release`, commit and push to `master`.
+
 -----
 
 ## Maintenance

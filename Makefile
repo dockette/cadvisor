@@ -29,3 +29,15 @@ test:
 	sleep 8
 	curl -fsS http://127.0.0.1:18080/healthz
 	docker rm -f cadvisor-dockette-test
+
+VERSION:=$(shell cat VERSION)
+
+.PHONY: version
+version:
+	@echo ${VERSION}
+
+.PHONY: release
+release:
+	@date -u +%Y.%m.%d > VERSION
+	@echo "VERSION: ${VERSION} -> $$(cat VERSION)"
+	@echo "next: git commit -am \"Release: $$(cat VERSION)\" && git push"
