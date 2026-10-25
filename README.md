@@ -46,10 +46,14 @@ Use `make run` to start the same local cAdvisor container with the documented ho
 
 Docker image tags use the **numeric** form (e.g. `0.60.6`), matching `ghcr.io/google/cadvisor`. GitHub [releases](https://github.com/google/cadvisor/releases) use a `v` prefix (e.g. v0.60.6) for the same version.
 
-| Image tag | Equivalent upstream | Docker Hub |
-|-----------|---------------------|------------|
-| `dockette/cadvisor:0.60.6` | `ghcr.io/google/cadvisor:0.60.6` | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
-| `dockette/cadvisor:latest` | same as `0.60.6` (rolling) | [tags](https://hub.docker.com/r/dockette/cadvisor/tags/) |
+`ghcr.io/google/cadvisor:0.60.6` is the upstream image. Tags on [Docker Hub](https://hub.docker.com/r/dockette/cadvisor/tags/):
+
+| Tag | What it is |
+|-----|------------|
+| `dockette/cadvisor:latest` | latest build of `master` |
+| `dockette/cadvisor:2026.10.23` | release `2026.10.23` |
+| `dockette/cadvisor:0.60.6` | latest build with cAdvisor `0.60.6` |
+| `dockette/cadvisor:0.60.6-2026.10.23` | cAdvisor `0.60.6` in release `2026.10.23`; pin this one |
 
 This image is a **thin republish**: the Dockerfile uses `FROM ghcr.io/google/cadvisor:${CADVISOR_VERSION}` so runtime behavior matches that upstream tag.
 
@@ -57,8 +61,8 @@ For **cAdvisor versions before v0.53.0**, the historical registry was `gcr.io/ca
 
 ## Release version
 
-The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/cadvisor:<VERSION>`.
-To release, run `make release`, commit and push to `master`.
+The release version is the date in [`VERSION`](VERSION). The cAdvisor version is pinned in the workflow (`CADVISOR_VERSION`). On `master`, CI pushes the `latest` image under the four tags above.
+To release, run `make release`, commit and push to `master`. A cAdvisor upgrade is a release too.
 
 -----
 

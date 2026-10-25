@@ -79,6 +79,7 @@ jobs:
             dockette/cadvisor:${{ env.CADVISOR_VERSION }}
             dockette/cadvisor:latest
             dockette/cadvisor:${{ steps.version.outputs.version }}
+            dockette/cadvisor:${{ env.CADVISOR_VERSION }}-${{ steps.version.outputs.version }}
           platforms: linux/amd64
           build-args: |
             CADVISOR_VERSION=${{ env.CADVISOR_VERSION }}
@@ -99,7 +100,9 @@ jobs:
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release view "$(cat VERSION)" || gh release create "$(cat VERSION)" --generate-notes
+        run: |
+          v="$(cat VERSION)"
+          gh release view "$v" || gh release create "$v" --title "$v (cAdvisor $CADVISOR_VERSION)" --generate-notes
 
   docs:
     name: "Docs"
