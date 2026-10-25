@@ -1,11 +1,13 @@
 DOCKER_IMAGE=dockette/cadvisor
-DOCKER_TAG?=0.60.6
+DOCKER_TAG?=${CADVISOR_VERSION}
 DOCKER_PLATFORMS?=linux/amd64
+
+include VERSION
 
 .PHONY: build
 build:
 	docker buildx build --platform ${DOCKER_PLATFORMS} \
-		--build-arg CADVISOR_VERSION=${DOCKER_TAG} \
+		--build-arg CADVISOR_VERSION=${CADVISOR_VERSION} \
 		-t ${DOCKER_IMAGE}:${DOCKER_TAG} \
 		.
 
@@ -29,3 +31,12 @@ test:
 	sleep 8
 	curl -fsS http://127.0.0.1:18080/healthz
 	docker rm -f cadvisor-dockette-test
+
+.PHONY: version
+version:
+	@echo ${VERSION}
+
+.PHONY: release
+release:
+	@sed -i.bak "s/^VERSION=.*/VERSION=$$(date -u +%Y.%m.%d)/" VERSION && rm VERSION.bak
+	@cat VERSION
